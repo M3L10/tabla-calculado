@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificar Numero Capicua</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FF9900;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color:#7CCC83;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #CC333D;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"], input[type="submit"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #resultado {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #FF2957;
+        }
+    </style>
+     <script lang="javascript" type="text/javascript">
+        function verificarCapicua() {
+            const num = document.getElementById('numero').value.trim();
+            const longitud = num.length;
+
+            if (num <= 0 || !Number.isInteger(Number(num))) {
+                document.getElementById('resultado').innerHTML = 'Por favor ingrese un numero entero positivo.';
+                return;
+            }
+
+            let esCapicua = true;
+
+            for (let i = 0; i < longitud / 2; i++) {
+                if (num.charAt(i) !== num.charAt(longitud - 1 - i)) {
+                    esCapicua = false;
+                    break;
+                }
+            }
+
+            if (esCapicua) {
+                document.getElementById('resultado').innerHTML = 'ES CAPICUA';
+            } else {
+                document.getElementById('resultado').innerHTML = 'NO ES CAPICUA';
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Verificar Numero Capicua</h2>
+    <form onSubmit="verificarCapicua(); return false;">
+        <label for="numero">Ingrese un numero entero positivo:</label>
+        <input type="number" id="numero" name="numero" min="1" required>
+        <input type="submit" value="Verificar">
+    </form>
+    <div id="resultado"></div>
+</div>
+
+</body>
+</html>
+

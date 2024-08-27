@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Serie Binaria</title>
+    <script lang="javascript" type="text/javascript">
+        function generarSerieBinaria() {
+            const num = parseInt(document.getElementById('num').value);
+            let binSerie = [];
+           
+            if (num <= 0) {
+                document.getElementById('resultado').innerHTML = 'Por favor ingrese un número mayor que 0.';
+                return;
+            }
+           
+            for (let i = 0; i < num; i++) {
+                binSerie.push(i.toString(2));
+            }
+           
+            document.getElementById('resultado').innerHTML = binSerie.join(', ');
+        }
+    </script>
+</head>
+<body>
+
+<div>
+    <center><font face="Lucida Sans Unicode, Lucida Grande, sans-serif" size="5" color="#990000"><h1>GENERADOR DE SERIE BINARIA</h1></font></center>
+</div>
+
+<div>
+    <form onsubmit="generarSerieBinaria(); return false;">
+        <center><label for="num">Ingrese la cantidad de terminos de la serie:</label>
+        <input type="number" id="num" name="num" min="1" required>
+        <input type="submit" value="Generar">
+		</center>
+    </form>
+    <div id="resultado"></div>
+</div>
+</body>
+</html>
+

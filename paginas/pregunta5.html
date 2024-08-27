@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotar Dígitos Pares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FF9900;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #CC6600;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #33FFFF;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], button {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #33FFFF;
+            color: #000;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #28b4b4;
+        }
+        #resultado {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #CC66CC;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rotar Dígitos Pares de un Número</h1>
+        <form id="rotarParesForm">
+            <label for="numero">Introduzca un número (al menos 6 dígitos):</label>
+            <input type="text" id="numero" name="numero" required>
+            <button type="button" onclick="rotarPares()">Rotar</button>
+        </form>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function rotarPares() {
+            var numero = document.getElementById('numero').value;
+
+            if (numero.length < 6) {
+                document.getElementById('resultado').innerText = "El número debe tener al menos 6 dígitos.";
+                return;
+            }
+
+            var numList = numero.split('');
+           
+            var pares = numList.filter(d => parseInt(d) % 2 === 0);
+           
+            if (pares.length > 0) {
+                var ultimoPar = pares.pop();
+                pares.unshift(ultimoPar);
+            }
+           
+            var paresIndex = 0;
+            for (var i = 0; i < numList.length; i++) {
+                if (parseInt(numList[i]) % 2 === 0) {
+                    numList[i] = pares[paresIndex];
+                    paresIndex++;
+                }
+            }
+           
+            var numRotado = numList.join('');
+           
+            document.getElementById('resultado').innerText = "Número Rotado: " + numRotado;
+        }
+    </script>
+</body>
+</html>

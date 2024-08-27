@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversor a N�meros Romanos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FF9900;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color:#CC662B;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color:#CC008B;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"], input[type="submit"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #resultado {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color:#33FF33;
+        }
+    </style>
+     <script lang="javascript" type="text/javascript">
+        function convertirANumerosRomanos(numero) {
+            if (numero < 1 || numero > 3999) {
+                return "N�mero fuera de rango (de 1 a 3999)";
+            }
+
+            const romanos = [
+                {valor: 1000, letra: 'M'},
+                {valor: 900, letra: 'CM'},
+                {valor: 500, letra: 'D'},
+                {valor: 400, letra: 'CD'},
+                {valor: 100, letra: 'C'},
+                {valor: 90, letra: 'XC'},
+                {valor: 50, letra: 'L'},
+                {valor: 40, letra: 'XL'},
+                {valor: 10, letra: 'X'},
+                {valor: 9, letra: 'IX'},
+                {valor: 5, letra: 'V'},
+                {valor: 4, letra: 'IV'},
+                {valor: 1, letra: 'I'}
+            ];
+
+            let resultado = '';
+            let num = numero;
+
+            for (let i = 0; i < romanos.length; i++) {
+                while (num >= romanos[i].valor) {
+                    resultado += romanos[i].letra;
+                    num -= romanos[i].valor;
+                }
+            }
+
+            return resultado;
+        }
+
+        function procesarFormulario() {
+            const numero = parseInt(document.getElementById('numero').value.trim());
+
+            if (!isNaN(numero)) {
+                const numeroRomano = convertirANumerosRomanos(numero);
+                document.getElementById('resultado').innerText = `Numero romano: ${numeroRomano}`;
+            } else {
+                document.getElementById('resultado').innerText = 'Por favor ingrese un numero valido.';
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Conversor a Numeros Romanos</h2>
+    <form onSubmit="procesarFormulario(); return false;">
+        <label for="numero">Ingrese un numero entero (1-3999):</label>
+        <input type="number" id="numero" name="numero" min="1" max="3999" required>
+        <input type="submit" value="Convertir">
+    </form>
+    <div id="resultado"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Matriz de Pascal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:#FF9900;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color:#7C73FF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color:#54FFEE;
+        }
+        #pascalTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        #pascalTable th, #pascalTable td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+     <script lang="javascript" type="text/javascript">
+        function generarMatrizPascal() {
+            const numFilas = parseInt(document.getElementById('numFilas').value);
+
+            if (isNaN(numFilas) || numFilas <= 0) {
+                alert("Por favor ingrese un n�mero v�lido para las filas.");
+                return;
+            }
+
+            const tabla = document.getElementById('pascalTable');
+            tabla.innerHTML = '';
+
+            let pascal = [];
+            for (let i = 0; i < numFilas; i++) {
+                pascal[i] = [];
+                for (let j = 0; j <= i; j++) {
+                    if (j === 0 || j === i) {
+                        pascal[i][j] = 1;
+                    } else {
+                        pascal[i][j] = pascal[i - 1][j - 1] + pascal[i - 1][j];
+                    }
+                }
+            }
+
+            const tbody = document.createElement('tbody');
+            for (let i = 0; i < numFilas; i++) {
+                const fila = document.createElement('tr');
+                for (let j = 0; j <= i; j++) {
+                    const celda = document.createElement('td');
+                    celda.textContent = pascal[i][j];
+                    fila.appendChild(celda);
+                }
+                tbody.appendChild(fila);
+            }
+            tabla.appendChild(tbody);
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Matriz de Pascal</h2>
+    <label for="numFilas">Numero de filas:</label>
+    <input type="number" id="numFilas" min="1" >
+    <button onClick="generarMatrizPascal()">Generar Matriz</button>
+
+    <table id="pascalTable">
+        <caption>Matriz de Pascal</caption>
+    </table>
+</div>
+
+</body>
+</html>

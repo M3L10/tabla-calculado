@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Invertir una Cadena</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:#FF9900;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color:#CC5AC6;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color:#00CC81;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="submit"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #resultado {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color:#CC662B;
+        }
+    </style>
+     <script lang="javascript" type="text/javascript">
+        function invertirCadena() {
+            const cadena = document.getElementById('cadena').value.trim();
+            const cadenaInvertida = cadena.split('').reverse().join('');
+            document.getElementById('resultado').innerText = `Cadena invertida: ${cadenaInvertida}`;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Invertir una Cadena</h2>
+    <form onSubmit="invertirCadena(); return false;">
+        <label for="cadena">Ingrese una cadena:</label>
+        <input type="text" id="cadena" name="cadena" required>
+        <input type="submit" value="Invertir">
+    </form>
+    <div id="resultado"></div>
+</div>
+
+</body>
+</html>
+

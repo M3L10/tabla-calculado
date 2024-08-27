@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>D&#65533;gitos Repetidos en un N&#65533;mero</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FF9900;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #CC33CC;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #33CC00;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"], input[type="submit"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #resultado {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color:#33FFFF;
+        }
+    </style>
+     <script lang="javascript" type="text/javascript">
+        function encontrarDigitosRepetidos() {
+            const num = document.getElementById('numero').value.trim();
+            const longitud = num.length;
+
+            if (longitud <= 2) {
+                document.getElementById('resultado').innerHTML = 'El n?mero debe ser mayor a 100.';
+                return;
+            }
+
+            let digitos = {};
+            let repetidos = [];
+
+            for (let i = 0; i < longitud; i++) {
+                let digito = num.charAt(i);
+
+                // Ignorar el signo "-" si es negativo
+                if (i === 0 && digito === '-') {
+                    continue;
+                }
+
+                if (digitos[digito]) {
+                    if (!repetidos.includes(digito)) {
+                        repetidos.push(digito);
+                    }
+                } else {
+                    digitos[digito] = true;
+                }
+            }
+
+            if (repetidos.length === 0) {
+                document.getElementById('resultado').innerHTML = 'No hay d?gitos repetidos.';
+            } else {
+                document.getElementById('resultado').innerHTML = `
+                    <strong>D?gitos repetidos en ${num}:</strong> ${repetidos.join(', ')}
+                `;
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Buscar Digitos Repetidos en un Numero</h2>
+    <form onSubmit="encontrarDigitosRepetidos(); return false;">
+        <label for="numero">Ingrese un numero mayor a 100:</label>
+        <input type="number" id="numero" name="numero" min="101" required>
+        <input type="submit" value="Buscar">
+    </form>
+    <div id="resultado"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rotar Número</title>
+   <script lang="javascript" type="text/javascript">
+        function rotarIzquierda(num, rotaciones) {
+            let str = num.toString();
+            rotaciones = rotaciones % str.length;
+            return str.slice(rotaciones) + str.slice(0, rotaciones);
+        }
+
+        function rotarDerecha(num, rotaciones) {
+            let str = num.toString();
+            rotaciones = rotaciones % str.length;
+            return str.slice(-rotaciones) + str.slice(0, -rotaciones);
+        }
+
+        function realizarRotaciones() {
+            const num = document.getElementById('num').value;
+            const rotaciones = parseInt(document.getElementById('rotaciones').value);
+
+            const resultadoIzquierda = rotarIzquierda(num, rotaciones);
+            const resultadoDerecha = rotarDerecha(num, rotaciones);
+
+            document.getElementById('resultado').innerHTML = `
+                Rotación Izquierda: ${resultadoIzquierda}<br>
+                Rotación Derecha: ${resultadoDerecha}
+            `;
+        }
+    </script>
+</head>
+<body>
+
+<div>
+    <center><font face="Lucida Sans Unicode, Lucida Grande, sans-serif" size="5" color="#990000">ROTAR NUMERO</font></center>
+</div>
+
+<div>
+    <form onSubmit="realizarRotaciones(); return false;">
+        <label for="num">Ingrese el numero:</label>
+        <input type="text" id="num" name="num" required>
+        <br></br>
+        <label for="rotaciones">Ingrese la cantidad de rotaciones:</label>
+        <input type="number" id="rotaciones" name="rotaciones" min="0" required>
+        <br>
+        <input type="submit" value="Rotar">
+    </form>
+    <div id="resultado"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Generación de Factoriales</title>
+    <script lang="javascript" type="text/javascript">
+        function factorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            return n * factorial(n - 1);
+        }
+
+        function generarFactoriales() {
+            const num = parseInt(document.getElementById('num').value);
+            let factorialSerie = [];
+            let suma = 0;
+           
+            if (num <= 0) {
+                document.getElementById('resultado').innerHTML = 'Por favor ingrese un número mayor que 0.';
+                return;
+            }
+
+            for (let i = 1; i <= num; i++) {
+                let fact = factorial(i);
+                factorialSerie.push(fact);
+                suma += fact;
+            }
+
+            document.getElementById('resultado').innerHTML = 'Factoriales: ' + factorialSerie.join(', ') + '<br>Suma: ' + suma;
+        }
+    </script>
+</head>
+<body>
+
+<div>
+    <center><font face="Lucida Sans Unicode, Lucida Grande, sans-serif" size="5" color="#990000"><h2>GENERADOR DE FACTORIALES Y SUMA</h2></font></center>
+</div>
+
+<div>
+    <form onsubmit="generarFactoriales(); return false;">
+        <center><label for="num">Ingrese el valor de N:</label>
+        <input type="number" id="num" name="num" min="1" required>
+        <input type="submit" value="Generar">
+		</center>
+    </form>
+    <div id="resultado"></div>
+</div>
+</body>
+</html>

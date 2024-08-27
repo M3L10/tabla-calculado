@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Serie de Fibonacci</title>
+    <script lang="javascript" type="text/javascript">
+        function generarFibonacci() {
+            const num = parseInt(document.getElementById('num').value);
+            let fiboSerie = [0, 1];
+           
+            if (num <= 0) {
+                document.getElementById('resultado').innerHTML = 'Por favor ingrese un n�mero mayor que 0.';
+                return;
+            } else if (num === 1) {
+                fiboSerie = [0];
+            } else {
+                for (let i = 2; i < num; i++) {
+                    fiboSerie.push(fiboSerie[i - 1] + fiboSerie[i - 2]);
+                }
+            }
+           
+            document.getElementById('resultado').innerHTML = fiboSerie.join(', ');
+        }
+    </script>
+</head>
+<body>
+
+<div>
+    <center><font face="Lucida Sans Unicode, Lucida Grande, sans-serif" size="5" color="#990000"><h2>GENERADOR SERIE DE FIBONACCI</h2></font></center>
+</div>
+
+<div>
+    <form onSubmit="generarFibonacci(); return false;">
+        <center><label for="num">Ingrese la cantidad de terminos de la serie:</label>
+        <input type="number" id="num" name="num" min="1" required>
+        <input type="submit" value="Mostrar">
+		</center>
+    </form>
+    <div id="resultado"></div>
+</div>
+</body>
+</html>

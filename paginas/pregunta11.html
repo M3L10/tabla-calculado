@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generar Serie Exponencial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FF9900;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #33CC00;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #FF3700;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"], input[type="submit"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #resultado {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #FFFF00;
+            white-space: pre-wrap;
+        }
+    </style>
+    <script type="text/javascript">
+        function generarSerieExponencial() {
+            const n = parseInt(document.getElementById('numero').value.trim(), 10);
+
+            if (n < 0 || !Number.isInteger(n)) {
+                document.getElementById('resultado').innerText = 'Ingrese un numero entero positivo o igual a 1.';
+                return;
+            }
+
+            let serieExponencial = [];
+            let x = 1;
+
+            for (let i = 0; i <= n; i++) {
+                let termino = Math.pow(x, i) / factorial(i);
+                serieExponencial.push(termino.toString());
+            }
+
+            document.getElementById('resultado').innerText = `
+                Serie exponencial para x = ${x} hasta ${n} términos:
+                ${serieExponencial.join(', ')}
+            `;
+        }
+
+        function factorial(num) {
+            if (num === 0 || num === 1) {
+                return 1;
+            }
+            let result = 1;
+            for (let i = 2; i <= num; i++) {
+                result *= i;
+            }
+            return result;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>GENERAR LA SERIE EXPONENCIAL</h1>
+        <form onsubmit="generarSerieExponencial(); return false;">
+            <label for="numero">Ingrese el valor de n:</label>
+            <input type="number" id="numero" name="numero" min="1" required>
+            <input type="submit" value="Generar">
+        </form>
+        <div id="resultado"></div>
+    </div>
+</body>
+</html>
